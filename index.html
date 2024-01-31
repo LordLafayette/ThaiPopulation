@@ -31,6 +31,8 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="data/Thai_Overall_Sex_1.js"></script>
+        <script src="data/Thai_FeMale_Population_2.js"></script>
+        <script src="data/Thai_Male_Population_3.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -49,7 +51,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[10.118391466047953,89.36358160285624],[22.214592237362623,110.06637182726999]]);
+        }).fitBounds([[13.247297768198003,79.9852511851518],[25.343498539512673,100.68804140956554]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -172,8 +174,260 @@
         });
         bounds_group.addLayer(layer_Thai_Overall_Sex_1);
         map.addLayer(layer_Thai_Overall_Sex_1);
+        function pop_Thai_FeMale_Population_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Provice EN</strong><br />' + (feature.properties['ADM1_EN'] !== null ? autolinker.link(feature.properties['ADM1_EN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Provice TH</strong><br />' + (feature.properties['ADM1_TH'] !== null ? autolinker.link(feature.properties['ADM1_TH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">จำนวนประชากรชาย</th>\
+                        <td>' + (feature.properties['จำนวนประชากรชาย'] !== null ? autolinker.link(feature.properties['จำนวนประชากรชาย'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">จำนวนประชากรหญิง</th>\
+                        <td>' + (feature.properties['จำนวนประชากรหญิง'] !== null ? autolinker.link(feature.properties['จำนวนประชากรหญิง'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">จำนวนประชากรทั้งหมด</th>\
+                        <td>' + (feature.properties['จำนวนประชากรทั้งหมด'] !== null ? autolinker.link(feature.properties['จำนวนประชากรทั้งหมด'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
+        }
+
+        function style_Thai_FeMale_Population_2_0(feature) {
+            if (feature.properties['จำนวนประชากรหญิง'] >= 96012.000000 && feature.properties['จำนวนประชากรหญิง'] <= 222055.000000 ) {
+                return {
+                pane: 'pane_Thai_FeMale_Population_2',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,101,204,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรหญิง'] >= 222055.000000 && feature.properties['จำนวนประชากรหญิง'] <= 278380.000000 ) {
+                return {
+                pane: 'pane_Thai_FeMale_Population_2',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,76,179,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรหญิง'] >= 278380.000000 && feature.properties['จำนวนประชากรหญิง'] <= 405650.400000 ) {
+                return {
+                pane: 'pane_Thai_FeMale_Population_2',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,51,153,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรหญิง'] >= 405650.400000 && feature.properties['จำนวนประชากรหญิง'] <= 648103.400000 ) {
+                return {
+                pane: 'pane_Thai_FeMale_Population_2',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,25,128,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรหญิง'] >= 648103.400000 && feature.properties['จำนวนประชากรหญิง'] <= 2916162.000000 ) {
+                return {
+                pane: 'pane_Thai_FeMale_Population_2',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,102,0.788235294117647)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Thai_FeMale_Population_2');
+        map.getPane('pane_Thai_FeMale_Population_2').style.zIndex = 402;
+        map.getPane('pane_Thai_FeMale_Population_2').style['mix-blend-mode'] = 'normal';
+        var layer_Thai_FeMale_Population_2 = new L.geoJson(json_Thai_FeMale_Population_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Thai_FeMale_Population_2',
+            layerName: 'layer_Thai_FeMale_Population_2',
+            pane: 'pane_Thai_FeMale_Population_2',
+            onEachFeature: pop_Thai_FeMale_Population_2,
+            style: style_Thai_FeMale_Population_2_0,
+        });
+        bounds_group.addLayer(layer_Thai_FeMale_Population_2);
+        function pop_Thai_Male_Population_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Provice EN</strong><br />' + (feature.properties['ADM1_EN'] !== null ? autolinker.link(feature.properties['ADM1_EN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Province TH</strong><br />' + (feature.properties['ADM1_TH'] !== null ? autolinker.link(feature.properties['ADM1_TH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">จำนวนประชากรชาย</th>\
+                        <td>' + (feature.properties['จำนวนประชากรชาย'] !== null ? autolinker.link(feature.properties['จำนวนประชากรชาย'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">จำนวนประชากรหญิง</th>\
+                        <td>' + (feature.properties['จำนวนประชากรหญิง'] !== null ? autolinker.link(feature.properties['จำนวนประชากรหญิง'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">จำนวนประชากรทั้งหมด</th>\
+                        <td>' + (feature.properties['จำนวนประชากรทั้งหมด'] !== null ? autolinker.link(feature.properties['จำนวนประชากรทั้งหมด'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+            var popup = layer.getPopup();
+            var content = popup.getContent();
+            var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
+            popup.setContent(updatedContent);
+        }
+
+        function style_Thai_Male_Population_3_0(feature) {
+            if (feature.properties['จำนวนประชากรชาย'] >= 89679.000000 && feature.properties['จำนวนประชากรชาย'] <= 205911.200000 ) {
+                return {
+                pane: 'pane_Thai_Male_Population_3',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,204,204,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรชาย'] >= 205911.200000 && feature.properties['จำนวนประชากรชาย'] <= 271343.600000 ) {
+                return {
+                pane: 'pane_Thai_Male_Population_3',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,153,153,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรชาย'] >= 271343.600000 && feature.properties['จำนวนประชากรชาย'] <= 387773.400000 ) {
+                return {
+                pane: 'pane_Thai_Male_Population_3',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,102,102,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรชาย'] >= 387773.400000 && feature.properties['จำนวนประชากรชาย'] <= 600256.400000 ) {
+                return {
+                pane: 'pane_Thai_Male_Population_3',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,51,51,0.788235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['จำนวนประชากรชาย'] >= 600256.400000 && feature.properties['จำนวนประชากรชาย'] <= 2555426.000000 ) {
+                return {
+                pane: 'pane_Thai_Male_Population_3',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,0.788235294117647)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Thai_Male_Population_3');
+        map.getPane('pane_Thai_Male_Population_3').style.zIndex = 403;
+        map.getPane('pane_Thai_Male_Population_3').style['mix-blend-mode'] = 'normal';
+        var layer_Thai_Male_Population_3 = new L.geoJson(json_Thai_Male_Population_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Thai_Male_Population_3',
+            layerName: 'layer_Thai_Male_Population_3',
+            pane: 'pane_Thai_Male_Population_3',
+            onEachFeature: pop_Thai_Male_Population_3,
+            style: style_Thai_Male_Population_3_0,
+        });
+        bounds_group.addLayer(layer_Thai_Male_Population_3);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Thai_Overall_Sex<br /><table><tr><td style="text-align: center;"><img src="legend/Thai_Overall_Sex_1_Male0.png" /></td><td>Male</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_Overall_Sex_1_Female1.png" /></td><td>Female</td></tr></table>': layer_Thai_Overall_Sex_1,"Google Maps": layer_GoogleMaps_0,}).addTo(map);
+        L.control.layers(baseMaps,{'Thai_Male_Population<br /><table><tr><td style="text-align: center;"><img src="legend/Thai_Male_Population_3_๘๙๖๗๙๒๐๕๙๑๑0.png" /></td><td>๘๙๖๗๙ - ๒๐๕๙๑๑</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_Male_Population_3_๒๐๕๙๑๑๒๗๑๓๔๔1.png" /></td><td>๒๐๕๙๑๑ - ๒๗๑๓๔๔</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_Male_Population_3_๒๗๑๓๔๔๓๘๗๗๗๓2.png" /></td><td>๒๗๑๓๔๔ - ๓๘๗๗๗๓</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_Male_Population_3_๓๘๗๗๗๓๖๐๐๒๕๖3.png" /></td><td>๓๘๗๗๗๓ - ๖๐๐๒๕๖</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_Male_Population_3_๖๐๐๒๕๖๒๕๕๕๔๒๖4.png" /></td><td>๖๐๐๒๕๖ - ๒๕๕๕๔๒๖</td></tr></table>': layer_Thai_Male_Population_3,'Thai_FeMale_Population<br /><table><tr><td style="text-align: center;"><img src="legend/Thai_FeMale_Population_2_๙๖๐๑๒๒๒๒๐๕๕0.png" /></td><td>๙๖๐๑๒ - ๒๒๒๐๕๕</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_FeMale_Population_2_๒๒๒๐๕๕๒๗๘๓๘๐1.png" /></td><td>๒๒๒๐๕๕ - ๒๗๘๓๘๐</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_FeMale_Population_2_๒๗๘๓๘๐๔๐๕๖๕๐2.png" /></td><td>๒๗๘๓๘๐ - ๔๐๕๖๕๐</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_FeMale_Population_2_๔๐๕๖๕๐๖๔๘๑๐๓3.png" /></td><td>๔๐๕๖๕๐ - ๖๔๘๑๐๓</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_FeMale_Population_2_๖๔๘๑๐๓๒๙๑๖๑๖๒4.png" /></td><td>๖๔๘๑๐๓ - ๒๙๑๖๑๖๒</td></tr></table>': layer_Thai_FeMale_Population_2,'Thai_Overall_Sex<br /><table><tr><td style="text-align: center;"><img src="legend/Thai_Overall_Sex_1_Male0.png" /></td><td>Male</td></tr><tr><td style="text-align: center;"><img src="legend/Thai_Overall_Sex_1_Female1.png" /></td><td>Female</td></tr></table>': layer_Thai_Overall_Sex_1,"Google Maps": layer_GoogleMaps_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
